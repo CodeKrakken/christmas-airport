@@ -10,4 +10,8 @@ class Airport
     @hangar.last
   end
 
+  def launch(plane)
+    @hangar.delete(plane)
+  end
+
 end
