@@ -18,16 +18,23 @@ describe Airport do
       expect(subject.land(plane)).to eq(plane)
     end
 
+    it 'will not land a plane when the hangar is full' do
+      1000.times { subject.land(double('plane')) }
+      expect { subject.land(plane) }.to raise_error("Hangar is full.")
+    end
+
   end
 
   describe '#launch' do
 
     let (:plane) { double :plane }
 
-    it 'launches a plane' do
+    it 'launches a plane and confirms that the plane has departed' do
       subject.land(plane)
-      expect(subject.launch(plane)).to eq(plane)
+      allow(plane).to receive(:confirm_departure).and_return("Departure successful.")
+      expect(subject.launch(plane)).to eq("Departure successful.")
     end
 
   end
+
 end
