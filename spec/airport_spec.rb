@@ -1,6 +1,7 @@
 require 'airport'
 
 describe Airport do
+  let (:plane) { double (:plane) }
 
   it 'responds to land' do
     expect(subject).to respond_to(:land)
@@ -12,6 +13,12 @@ describe Airport do
 
   it 'has a default capacity of 1000' do
     expect(subject.capacity).to eq(1000)
+  end
+
+  it 'default capacity can be overridden' do
+    airport = Airport.new(500)
+    500.times { airport.land(double(plane)) }
+    expect { airport.land(plane) }.to raise_error("Hangar is full.")
   end
 
   describe '#land' do
