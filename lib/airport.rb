@@ -1,8 +1,10 @@
 class Airport
   attr_reader :hangar
+  attr_reader :capacity
 
   def initialize
     @hangar = []
+    @capacity = 1000
   end
 
   def land(plane)
@@ -19,7 +21,7 @@ class Airport
   private
 
   def full?
-    @hangar.count >= 1000
+    @hangar.count >= @capacity
   end
 
 end

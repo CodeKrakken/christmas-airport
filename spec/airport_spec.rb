@@ -10,6 +10,10 @@ describe Airport do
     expect(subject).to respond_to(:launch)
   end
 
+  it 'has a default capacity of 1000' do
+    expect(subject.capacity).to eq(1000)
+  end
+
   describe '#land' do
   
     let (:plane) { double :plane }
