@@ -46,11 +46,14 @@ describe Airport do
     let (:plane) { double :plane }
 
     it 'launches a plane and confirms that the plane has departed' do
-      srand(2)
+      srand(500)
       subject.land(plane)
       allow(plane).to receive(:confirm_departure).and_return("Departure successful.")
       expect(subject.launch(plane)).to eq("Departure successful.")
     end
+
+    it 'will not launch a plane when weather is stormy' do
+      srand
 
   end
 
