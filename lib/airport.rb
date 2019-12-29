@@ -8,6 +8,7 @@ class Airport
   end
 
   def land(plane)
+    fail "Plane cannot land - weather is unfavourable." if stormy?
     fail "Hangar is full." if full?
     @hangar << plane
     @hangar.last
@@ -19,6 +20,10 @@ class Airport
   end
 
   private
+
+  def stormy?
+    rand(10) == 3
+  end
 
   def full?
     @hangar.count >= @capacity
