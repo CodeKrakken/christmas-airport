@@ -15,6 +15,7 @@ class Airport
   end
 
   def launch(plane)
+    fail "Plane cannot depart - weather is unfavourable." if stormy?
     @hangar.delete(plane)
     plane.confirm_departure
   end

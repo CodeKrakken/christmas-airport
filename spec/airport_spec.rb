@@ -53,8 +53,12 @@ describe Airport do
     end
 
     it 'will not launch a plane when weather is stormy' do
-      srand
-
+      srand(500)
+      subject.land(plane)
+      srand(5)
+      allow(plane).to receive(:confirm_departure)
+      expect { subject.launch(plane) }.to raise_error("Plane cannot depart - weather is unfavourable.")
+    end
   end
 
 end
