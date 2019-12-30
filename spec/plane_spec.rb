@@ -26,7 +26,7 @@ describe Plane do
       allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:push)
       allow(airport).to receive(:stormy?).and_return(true)
-      expect { subject.land(airport) }.to raise_error("Cannot land - weather is unfavourable.")
+      expect { subject.land(airport) }.to raise_error("Cannot land - weather is inclement.")
     end
   end
 
@@ -37,9 +37,16 @@ describe Plane do
     it 'takes off from an airport and confirms departure' do
       allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:delete)
+      allow(airport).to receive(:stormy?).and_return(false)
       expect(subject.take_off(airport)).to eq "Departure successful."
-    end    
-
+    end
+    
+    it 'will not take off if it is stormy' do
+      allow(airport).to receive(:hangar)
+      allow(airport.hangar).to receive(:delete)
+      allow(airport).to receive(:stormy?).and_return(true)
+      expect { subject.take_off(airport) }.to raise_error("Cannot take off - weather is inclement.")
+    end
   end
 end
 
