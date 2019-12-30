@@ -35,6 +35,8 @@ describe Plane do
     let (:airport) { double (:airport) }  
   
     it 'takes off from an airport and confirms departure' do
+      allow(airport).to receive(:hangar)
+      allow(airport.hangar).to receive(:delete)
       expect(subject.take_off(airport)).to eq "Departure successful."
     end    
 

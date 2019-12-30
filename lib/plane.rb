@@ -9,6 +9,7 @@ class Plane
   end
 
   def take_off(airport)
+    airport.hangar.delete(self)
     "Departure successful."
   end
 
