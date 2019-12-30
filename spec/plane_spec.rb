@@ -29,5 +29,15 @@ describe Plane do
       expect { subject.land(airport) }.to raise_error("Cannot land - weather is unfavourable.")
     end
   end
+
+  describe "#take_off" do
+  
+    let (:airport) { double (:airport) }  
+  
+    it 'takes off from an airport and confirms departure' do
+      expect(subject.take_off(airport)).to eq "Departure successful."
+    end    
+
+  end
 end
 

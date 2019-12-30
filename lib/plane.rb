@@ -8,7 +8,7 @@ class Plane
     airport.hangar.push(self)
   end
 
-  def confirm_departure
+  def take_off(airport)
     "Departure successful."
   end
 
