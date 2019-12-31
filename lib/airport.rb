@@ -7,20 +7,7 @@ class Airport
     @capacity = capacity
   end
 
-  # def land(plane)
-  #   fail "Plane cannot land - weather is unfavourable." if stormy?
-  #   fail "Hangar is full." if full?
-  #   @hangar << plane
-  #   @hangar.last
-  # end
-
-  # def launch(plane)
-  #   fail "Plane cannot depart - weather is unfavourable." if stormy?
-  #   @hangar.delete(plane)
-  #   plane.confirm_departure
-  # end
-
-  private
+  # private
 
   def stormy?
     rand(10) == 3

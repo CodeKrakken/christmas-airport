@@ -12,4 +12,10 @@ describe Airport do
     expect(airport.capacity).to eq(500)
   end
 
+  # comment out airport.rb:10 to run private method tests
+  
+  it 'can test if it is full' do
+    expect(subject.full?).to eq(false)
+  end
+
 end
