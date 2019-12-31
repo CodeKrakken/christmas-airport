@@ -56,3 +56,4 @@ Usage
 
 Feature test screenshot:
 
+<img width="1280" alt="Screenshot 2019-12-31 at 15 55 47" src="https://user-images.githubusercontent.com/52076323/71627486-9461cb00-2bea-11ea-9812-11879bf5ab9e.png">
