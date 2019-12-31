@@ -61,9 +61,8 @@ describe Plane do
     it 'will not take off if it is stormy' do
       allow(airport).to receive(:class).and_return(Airport)
       allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:delete)
-      allow(airport).to receive(:stormy?).and_return(true)
       allow(airport.hangar).to receive(:include?).and_return(true)
+      allow(airport).to receive(:stormy?).and_return(true)
       expect { subject.take_off(airport) }.to raise_error("Cannot take off - weather is inclement.")
     end
 

@@ -15,3 +15,5 @@ RSpec.configure do |config|
     puts "\e[33mTry it now! Just run: rubocop\e[0m"
   end
 end
+
+RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
