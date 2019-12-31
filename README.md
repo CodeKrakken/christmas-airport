@@ -29,7 +29,23 @@ I want to prevent takeoff when weather is stormy
 
 As an air traffic controller 
 To ensure safety 
-I want to prevent landing when weather is stormy 
+I want to prevent landing when weather is stormy
+
+As the system designer
+In order to prevent confusion
+I want to prevent landing at anywhere other than an airport
+
+As the system designer
+In order to prevent confusion
+I want to prevent the plane from receiving 'land' instructions when already grounded
+
+As the system designer
+In order to prevent confusion
+I want to prevent the plane from receiving 'launch' instructions when already in flight
+
+As the system designer
+In order to prevent confusion
+I want to prevent the plane from receiving 'launch' instructions when not at specified airport
 ```
 
 Setup
