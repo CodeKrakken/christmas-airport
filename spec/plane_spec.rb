@@ -22,6 +22,7 @@ describe Plane do
       allow(airport).to receive(:full?).and_return(true)
       allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:push).and_return(subject)
+      subject.flying = true
       expect { subject.land(airport) }.to raise_error("Cannot land - hangar is full.")
     end
 
@@ -31,10 +32,12 @@ describe Plane do
       allow(airport.hangar).to receive(:push)
       allow(airport).to receive(:stormy?).and_return(true)
       allow(airport).to receive(:class).and_return(Airport)
+      subject.flying = true
       expect { subject.land(airport) }.to raise_error("Cannot land - weather is inclement.")
     end
 
     it 'will not land in a fictitious airport' do
+      subject.flying = true
       expect { subject.land(crab) }.to raise_error("Cannot land - not a valid airport.")
     end
 
