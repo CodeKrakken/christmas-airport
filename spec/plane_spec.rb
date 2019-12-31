@@ -38,13 +38,7 @@ describe Plane do
     end
 
     it 'will not land if already on the ground' do
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:full?).and_return(false)
-      allow(airport).to receive(:stormy?).and_return(false)
-      allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:push)
-      subject.flying = true
-      subject.land(airport)
+      subject.flying = false
       expect { subject.land(airport) }.to raise_error("Cannot land - already grounded.")
     end
   end
