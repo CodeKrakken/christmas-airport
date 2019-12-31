@@ -67,16 +67,7 @@ describe Plane do
     end
 
     it 'will not take off if already in flight' do
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:full?).and_return(false)
-      allow(airport).to receive(:stormy?).and_return(false)
-      allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:push)
-      allow(airport.hangar).to receive(:delete)
-      allow(airport.hangar).to receive(:include?).and_return(true)
       subject.flying = true
-      subject.land(airport)
-      subject.take_off(airport)
       expect { subject.take_off(airport) }.to raise_error("Cannot take off - already in flight.")
     end
 
