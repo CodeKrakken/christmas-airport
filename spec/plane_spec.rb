@@ -50,11 +50,11 @@ describe Plane do
     let (:crab) { double (:crab) }  
   
     it 'takes off from an airport and confirms departure' do
-      allow(airport).to receive(:hangar)
       allow(airport).to receive(:class).and_return(Airport)
-      allow(airport.hangar).to receive(:delete)
-      allow(airport).to receive(:stormy?).and_return(false)
+      allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:include?).and_return(true)
+      allow(airport).to receive(:stormy?).and_return(false)
+      allow(airport.hangar).to receive(:delete)
       expect(subject.take_off(airport)).to eq "Departure successful."
     end
     
