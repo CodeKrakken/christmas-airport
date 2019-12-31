@@ -17,6 +17,7 @@ class Plane
   end
 
   def take_off(airport)
+    fail "Cannot take off - not a valid airport." if airport.class != Airport
     fail "Cannot take off - not at this airport." if !airport.hangar.include? self
     fail "Cannot take off - already in flight." if @flying
     fail "Cannot take off - weather is inclement." if airport.stormy?

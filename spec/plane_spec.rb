@@ -53,10 +53,12 @@ describe Plane do
   describe "#take_off" do
   
     let (:airport) { double (:airport) }
-    let (:airport_2) { double (:airport_2) }  
+    let (:airport_2) { double (:airport_2) }
+    let (:crab) { double (:crab) }  
   
     it 'takes off from an airport and confirms departure' do
       allow(airport).to receive(:hangar)
+      allow(airport).to receive(:class).and_return(Airport)
       allow(airport.hangar).to receive(:delete)
       allow(airport).to receive(:stormy?).and_return(false)
       allow(airport.hangar).to receive(:include?).and_return(true)
@@ -64,6 +66,7 @@ describe Plane do
     end
     
     it 'will not take off if it is stormy' do
+      allow(airport).to receive(:class).and_return(Airport)
       allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:delete)
       allow(airport).to receive(:stormy?).and_return(true)
@@ -95,7 +98,12 @@ describe Plane do
       allow(airport_2).to receive(:hangar)
       allow(airport_2.hangar).to receive(:include?)
       subject.land(airport)
+      allow(airport_2).to receive(:class).and_return(Airport)
       expect { subject.take_off(airport_2) }.to raise_error("Cannot take off - not at this airport.")
+    end
+
+    it 'will not take off from an invalid airport' do
+      expect { subject.take_off(crab) }.to raise_error("Cannot take off - not a valid airport.")
     end
   end
 end
