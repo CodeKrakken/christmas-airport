@@ -71,17 +71,11 @@ describe Plane do
       expect { subject.take_off(airport) }.to raise_error("Cannot take off - already in flight.")
     end
 
-    it 'must take off from correct airport' do
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:full?).and_return(false)
-      allow(airport).to receive(:stormy?).and_return(false)
-      subject.flying = true
-      allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:push)
-      allow(airport_2).to receive(:hangar)
-      allow(airport_2.hangar).to receive(:include?)
-      subject.land(airport)
+    it 'cannot take off from incorrect airport' do
+      subject.flying = false
       allow(airport_2).to receive(:class).and_return(Airport)
+      allow(airport_2).to receive(:hangar)
+      allow(airport_2.hangar).to receive(:include?).and_return(false)
       expect { subject.take_off(airport_2) }.to raise_error("Cannot take off - not at this airport.")
     end
 
