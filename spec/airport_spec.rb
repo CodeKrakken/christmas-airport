@@ -8,8 +8,7 @@ describe Airport do
   end
 
   it 'default capacity can be overridden' do
-    airport = Airport.new(500)
-    expect(airport.capacity).to eq(500)
+    expect(Airport.new(500).capacity).to eq(500)
   end
 
   # comment out airport.rb:10 to run private method tests

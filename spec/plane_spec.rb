@@ -8,12 +8,12 @@ describe Plane do
     let (:crab) { double (:crab) }
 
     it 'lands a plane' do
-      allow(airport).to receive(:hangar)
+      subject.flying = true
       allow(airport).to receive(:class).and_return(Airport)
       allow(airport).to receive(:full?).and_return(false)
-      allow(airport.hangar).to receive(:push).and_return(subject)
       allow(airport).to receive(:stormy?).and_return(false)
-      subject.flying = true
+      allow(airport).to receive(:hangar)
+      allow(airport.hangar).to receive(:push).and_return(subject)
       expect(subject.land(airport)).to eq(subject)
     end
 
