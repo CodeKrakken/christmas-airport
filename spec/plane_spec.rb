@@ -4,8 +4,8 @@ describe Plane do
 
   describe '#land' do
 
-    let (:airport) { double (:airport) }
-    let (:crab) { double (:crab) }
+    let(:airport) { double :airport }
+    let(:crab) { double :crab }
 
     it 'lands a plane' do
       subject.flying = true
@@ -45,9 +45,9 @@ describe Plane do
 
   describe "#take_off" do
   
-    let (:airport) { double (:airport) }
-    let (:airport_2) { double (:airport_2) }
-    let (:crab) { double (:crab) }  
+    let(:airport) { double :airport }
+    let(:airport_2) { double :airport_2 }
+    let(:crab) { double :crab }  
   
     it 'takes off from an airport and confirms departure' do
       allow(airport).to receive(:class).and_return(Airport)
@@ -76,7 +76,7 @@ describe Plane do
       allow(airport_2).to receive(:class).and_return(Airport)
       allow(airport_2).to receive(:hangar)
       allow(airport_2.hangar).to receive(:include?).and_return(false)
-      expect { subject.take_off(airport_2) }.to raise_error("Cannot take off - not at this airport.")
+      expect { subject.take_off(airport_2) }.to raise_error("Cannot take off - not in hangar.")
     end
 
     it 'will not take off from an invalid airport' do
@@ -84,4 +84,3 @@ describe Plane do
     end
   end
 end
-
