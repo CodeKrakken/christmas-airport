@@ -13,9 +13,14 @@ describe Airport do
   end
 
   # comment out airport.rb:10 to run private method tests
-  
+
   it 'can test if it is full' do
     expect(subject.full?).to eq(false)
+  end
+
+  it 'can test if it is stormy' do
+    srand(500)
+    expect(subject.stormy?).to eq(false)
   end
 
 end
