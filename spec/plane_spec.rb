@@ -2,38 +2,39 @@ require 'plane'
 
 describe Plane do
 
+  before :each do
+    allow(airport).to receive(:class).and_return(Airport)
+    allow(airport).to receive(:hangar)
+    allow(airport).to receive(:stormy?).and_return(false)
+  end
+
   describe '#land' do
 
     let(:airport) { double :airport }
     let(:crab) { double :crab }
 
-    it 'lands a plane' do
+    before :each do
       subject.flying = true
-      allow(airport).to receive(:class).and_return(Airport)
       allow(airport).to receive(:full?).and_return(false)
-      allow(airport).to receive(:stormy?).and_return(false)
+    end
+
+    it 'lands a plane' do
       allow(airport).to receive(:hangar)
       allow(airport.hangar).to receive(:push).and_return(subject)
       expect(subject.land(airport)).to eq(subject)
     end
 
     it 'will not land a plane in a full hangar' do
-      subject.flying = true
-      allow(airport).to receive(:class).and_return(Airport)
       allow(airport).to receive(:full?).and_return(true)      
       expect { subject.land(airport) }.to raise_error("Cannot land - hangar is full.")
     end
 
     it 'will not land a plane if the weather is stormy' do
-      subject.flying = true
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:full?).and_return(false)
       allow(airport).to receive(:stormy?).and_return(true)
       expect { subject.land(airport) }.to raise_error("Cannot land - weather is inclement.")
     end
 
     it 'will not land in a fictitious airport' do
-      subject.flying = true
       expect { subject.land(crab) }.to raise_error("Cannot land - not a valid airport.")
     end
 
@@ -44,24 +45,22 @@ describe Plane do
   end
 
   describe "#take_off" do
+
+    before :each do
+      allow(airport.hangar).to receive(:include?).and_return(true)
+    end
   
     let(:airport) { double :airport }
     let(:airport_2) { double :airport_2 }
     let(:crab) { double :crab }  
   
     it 'takes off from an airport and confirms departure' do
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:include?).and_return(true)
-      allow(airport).to receive(:stormy?).and_return(false)
+
       allow(airport.hangar).to receive(:delete)
       expect(subject.take_off(airport)).to eq "Departure successful."
     end
     
     it 'will not take off if it is stormy' do
-      allow(airport).to receive(:class).and_return(Airport)
-      allow(airport).to receive(:hangar)
-      allow(airport.hangar).to receive(:include?).and_return(true)
       allow(airport).to receive(:stormy?).and_return(true)
       expect { subject.take_off(airport) }.to raise_error("Cannot take off - weather is inclement.")
     end
