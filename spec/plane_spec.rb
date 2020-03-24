@@ -8,10 +8,10 @@ describe Plane do
     allow(airport).to receive(:stormy?).and_return(false)
   end
 
-  describe '#land' do
+  let(:airport) { double :airport }
+  let(:crab) { double :crab }
 
-    let(:airport) { double :airport }
-    let(:crab) { double :crab }
+  describe '#land' do
 
     before :each do
       subject.flying = true
@@ -50,12 +50,9 @@ describe Plane do
       allow(airport.hangar).to receive(:include?).and_return(true)
     end
   
-    let(:airport) { double :airport }
     let(:airport_2) { double :airport_2 }
-    let(:crab) { double :crab }  
   
     it 'takes off from an airport and confirms departure' do
-
       allow(airport.hangar).to receive(:delete)
       expect(subject.take_off(airport)).to eq "Departure successful."
     end
