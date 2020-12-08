@@ -1,7 +1,7 @@
 Airport Challenge
 =================
 
-This application provides a basic air traffic control system. It was programmed in Ruby using TDD, as revision over Christmas 2019.
+This application provides a basic air traffic control system. It was programmed solo in Ruby using TDD, as revision over Christmas 2019. See original version [here](https://github.com/CodeKrakken/airport_challenge), programmed in rotating pairs at Makers.
 
 User stories
 ------
